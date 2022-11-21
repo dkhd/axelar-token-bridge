@@ -42,6 +42,11 @@
           "internalType": "uint256",
           "name": "amount",
           "type": "uint256"
+        },
+        {
+          "internalType": "address",
+          "name": "tokenAddress",
+          "type": "address"
         }
       ],
       "name": "sendToken",

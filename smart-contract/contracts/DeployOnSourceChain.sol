@@ -19,10 +19,11 @@ contract DeployOnSourceChain {
         string calldata destinationAddress,
         address[] calldata destinationAddresses,
         string calldata symbol,
-        uint256 amount
+        uint256 amount,
+        address tokenAddress
     ) external payable {
-        address tokenAddress = gateway.tokenAddresses(symbol);
         IERC20(tokenAddress).transferFrom(msg.sender, address(this), amount);
+        IERC20(tokenAddress).approve(address(gateway), amount);
         bytes memory payload = abi.encode(destinationAddresses);
         if (msg.value > 0) {
             gasReceiver.payNativeGasForContractCallWithToken{value: msg.value}(
